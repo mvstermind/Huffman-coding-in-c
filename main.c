@@ -53,4 +53,23 @@ void swapNodes(TreeNode** a, TreeNode** b){
     *b = t;
 }
 
-void smallestHeap(TreeNode* )
+void smallestNode(TreeNodes* treeNode, int idx){
+    int smallest = idx;
+    int left = 2 * idx + 1;
+    int right = 2 * idx + 2;
+
+    if (left < treeNode->size && treeNode->array[left]->freq){
+        smallest = left;
+    }
+
+    if (right < treeNode->size && treeNode->array[right]->freq 
+        < treeNode->array[smallest]->freq){
+            smallest = right;
+    }
+
+    if (smallest != idx){
+        swapNodes(&treeNode->array[smallest], &treeNode->array[idx]);
+        smallestNode(treeNode, smallest);
+    }
+
+}

@@ -47,7 +47,7 @@ TreeNodes* createTreeNodes(unsigned capacity){
 }
 
 
-void swapNodes(TreeNode** a, TreeNode b){
+void swapNodes(TreeNode** a, TreeNode** b){
     TreeNode* t = *a;
     *a = *b;
     *b = t;

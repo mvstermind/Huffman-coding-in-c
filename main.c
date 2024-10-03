@@ -73,3 +73,31 @@ void smallestNode(TreeNodes* treeNode, int idx){
     }
 
 }
+
+int sizeIsOne(TreeNodes* treeNodes){
+    return (treeNodes->size == 1);
+}
+
+TreeNode* extractMin(TreeNodes* treeNodes){
+
+    TreeNode* temp = treeNodes->array[0];
+    treeNodes->array[0] = treeNodes->array[treeNodes->size - 1];
+
+    treeNodes->size--;
+    smallestNode(treeNodes, 0);
+
+    return temp;
+}
+
+void instertNewNode(TreeNodes* treeNodes, TreeNode* treeNode){
+    
+    treeNodes->size++;
+    int i = treeNodes->size - 1;
+
+    while (i && treeNode->freq < treeNodes->array[(i -1 )/ 2]->freq){
+        treeNodes->array[i] = treeNodes->array[(i - 1)/ 2];
+        i = (i - 1) / 2;
+    }
+
+    treeNodes->array[i] = treeNode;
+}

@@ -149,7 +149,7 @@ TreeNode* createHuffTree(char data[], int freq[], int size){
         left = extractMin(treeNodes);
         right = extractMin(treeNodes);
 
-        top = newNode('$', left->freq, right->freq);
+        top = newNode(left->freq, right->freq);
 
         top->left = left;
         top->right = right;
@@ -177,4 +177,22 @@ void printCodes(TreeNode* root, int arr[], int top){
     }
 
 
+}
+void HuffmanCode(char data[], int freq[], int size){
+    TreeNode* root = createHuffTree(data, freq, size);
+
+    int arr[MAX_TREE_HT], top = 0;
+    printCodes(root, arr, top);
+}
+
+int main(void){
+
+    char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' }; 
+    int freq[] = { 5, 9, 12, 13, 16, 45 }; 
+  
+    int size = sizeof(arr) / sizeof(arr[0]); 
+  
+    HuffmanCode(arr, freq, size); 
+  
+    return 0; 
 }

@@ -101,3 +101,26 @@ void instertNewNode(TreeNodes* treeNodes, TreeNode* treeNode){
 
     treeNodes->array[i] = treeNode;
 }
+
+void buildNode(TreeNodes* treeNodes){
+    
+    int n = treeNodes->size - 1;
+    int i;
+
+    for (i = (n - 1) / 2; i >= 0; i--){
+       smallestNode(treeNodes, i) ;
+    }
+}
+
+void printArray(int arr[], int n){
+    int i; 
+    for (i = 0; i < n; i++){
+        printf("%d", arr[i]);
+    }
+
+    printf("\n");
+}
+
+int checkLeaf(TreeNode* root){
+    return !(root->left) && !(root->right);
+}

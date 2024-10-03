@@ -124,3 +124,24 @@ void printArray(int arr[], int n){
 int checkLeaf(TreeNode* root){
     return !(root->left) && !(root->right);
 }
+
+TreeNodes* createNBuildNode(char data[], int freq[], int size){
+    TreeNodes* treeNodes = createTreeNodes(size);
+
+    int i;
+
+    for (i = 0; i < size; i++){
+        treeNodes->array[i] = newNode(data[i], freq[i]);
+    }
+
+    treeNodes->size = size;
+    buildNode(treeNodes);
+
+    return treeNodes;
+}
+
+TreeNodes* createHuffTree(char data[], int freq[], int size){
+    TreeNodes *left, *right, *top;
+
+    TreeNode* treeNode = createTreeNodes(data, freq, size);
+}

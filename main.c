@@ -140,8 +140,41 @@ TreeNodes* createNBuildNode(char data[], int freq[], int size){
     return treeNodes;
 }
 
-TreeNodes* createHuffTree(char data[], int freq[], int size){
-    TreeNodes *left, *right, *top;
+TreeNode* createHuffTree(char data[], int freq[], int size){
+    TreeNode *left, *right, *top;
 
-    TreeNode* treeNode = createTreeNodes(data, freq, size);
+    TreeNodes* treeNodes = createNBuildNode(data, freq, size);
+
+    while (!sizeIsOne(treeNodes)){
+        left = extractMin(treeNodes);
+        right = extractMin(treeNodes);
+
+        top = newNode('$', left->freq, right->freq);
+
+        top->left = left;
+        top->right = right;
+
+        instertNewNode(treeNodes, top);
+    }
+
+    return extractMin(treeNodes);
+}
+
+void printCodes(TreeNode* root, int arr[], int top){
+    if (root->left) {
+        arr[top] = 0;
+        printCodes(root->left, arr, top + 1);
+    }
+
+    if (root->right){
+        arr[top] = 1;
+        printCodes(root->right,arr, top + 1);
+    }
+
+    if (checkLeaf(root)){
+        printf("%c: ", root->data);
+        printArray(arr, top);
+    }
+
+
 }
